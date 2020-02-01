@@ -5,6 +5,7 @@ import config from '../../config'
 import NewDis from './Tabs/NewDis'
 import NewSong from './Tabs/NewSong'
 import Axios from 'axios'
+// import console = require('console');
 class DiscoveryIndex extends React.Component {
     constructor(props) {
         super(props);
@@ -50,7 +51,10 @@ class DiscoveryIndex extends React.Component {
     }
     render() {
         return (
-            <View style={{ display: 'flex', marginBottom: 80 }}>
+            <View style={{  marginBottom: 80 }}>
+                <TouchableOpacity  onPress={e=>this.props.navigation.navigate('CommunicationWebView')}  style={{position:'absolute',right:10,bottom:150,zIndex:999}}>
+                <Image source={require('../../Asserts/kefu/kefu.png')} style={{width:50,height:60}} />
+                </TouchableOpacity>
                 <ScrollView style={{ paddingLeft: 10, paddingRight: 10, marginBottom: 100 }}>
                     <Carousel
                         // style={{borderRadius:10}}
@@ -222,6 +226,7 @@ class DiscoveryIndex extends React.Component {
                     </View>
 
                 </ScrollView>
+                
             </View>
 
         );

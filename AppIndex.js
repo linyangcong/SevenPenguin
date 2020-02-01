@@ -1,4 +1,5 @@
 import React from 'react'
+import {ScrollView,Image} from 'react-native'
 import LoginRouter from './Router/StackRouter/Login'
 class AppIndex extends React.Component {
     constructor(props) {
@@ -7,7 +8,8 @@ class AppIndex extends React.Component {
     }
     render() { 
         return ( 
-               <LoginRouter />
+                <LoginRouter />
+              
          );
     }
 }

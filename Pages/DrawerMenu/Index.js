@@ -183,9 +183,9 @@ class DrawerIndex extends React.Component {
           <ScrollView style={{ display: this.state.activePanel == 'Mine' ? 'flex' : 'none' }}>
             <Mine navigation={this.props.navigation} />
           </ScrollView>
-          <ScrollView style={{ display: this.state.activePanel == 'Discovery' ? 'flex' : 'none' }}>
+          <View style={{ display: this.state.activePanel == 'Discovery' ? 'flex' : 'none' }}>
             <Discovery navigation={this.props.navigation} />
-          </ScrollView>
+          </View>
           <ScrollView style={{ display: this.state.activePanel == 'CloudCountry' ? 'flex' : 'none' }}>
             <CloudCountry navigation={this.props.navigation} />
           </ScrollView>
