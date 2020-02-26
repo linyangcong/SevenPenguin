@@ -26,6 +26,7 @@ import SongList from '../../Pages/Mine/SongList'
 // import LSAF from './Item/Mine'
 
 import CommunicationWebView from '../../Pages/WebView/CommunicationWebView'
+import LookWebView from '../../Pages/WebView/LookWebView'
 export default createAppContainer(
     createStackNavigator({
         MainPage,
@@ -48,7 +49,8 @@ export default createAppContainer(
         FocusMusic,
         NearlyPlay,
         SongList,
-        CommunicationWebView
+        CommunicationWebView,
+        LookWebView
     },
     {
         initialRouteName:'MainPage',

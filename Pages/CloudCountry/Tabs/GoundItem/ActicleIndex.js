@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, ScrollView, Image, StyleSheet } from 'react-native'
+import { View, Text, ScrollView, Image, StyleSheet ,StatusBar} from 'react-native'
 // import {WebView } from 'react-native-webview'
 import config from '../../../../config'
 class ActicleIndex extends React.Component {
@@ -17,7 +17,8 @@ class ActicleIndex extends React.Component {
     }
     render() {
         return (
-            <ScrollView >
+            <View >
+                <StatusBar backgroundColor={'#333'} barStyle={"light-content"}/>
                 <View style={{ backgroundColor: "#333", padding: 10 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',marginTop:10 }}>
                         <Text style={{ fontSize: 30, color: 'white' }} onPress={() => this.props.navigation.pop()}>←</Text>
@@ -38,7 +39,7 @@ class ActicleIndex extends React.Component {
                     </View>
                 </View>
 
-                <View style={{ padding: 10 }}>
+                <ScrollView style={{ padding: 10 }}>
                     <View>
                         <Image source={{ uri: config.resourceServer + this.state.detail.img_path }} style={{ height: 200 }} />
                     </View>
@@ -49,9 +50,9 @@ class ActicleIndex extends React.Component {
                         /> */}
                         <Text style={{ fontSize: 12 }}>{this.state.detail.content}</Text>
                     </View>
-                </View>
+                </ScrollView>
 
-            </ScrollView>
+            </View>
 
         );
     }

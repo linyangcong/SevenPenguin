@@ -79,7 +79,8 @@ import {
     Image,
     View,
     Text,
-    Dimensions
+    Dimensions,
+    YellowBox
 } from 'react-native';
 import _ from 'lodash';
 const {width}=Dimensions.get('screen')
@@ -107,6 +108,11 @@ export default class VideoPlayer extends Component {
          * All of our values that are updated by the
          * methods and listeners in this class
          */
+        YellowBox.ignoreWarnings([
+            'Warning: componentWillMount is deprecated',
+            'Warning: componentWillReceiveProps is deprecated',
+            'Module RCTImageLoader requires',
+          ]);
         this.state = {
             // Video
             resizeMode: this.props.resizeMode,

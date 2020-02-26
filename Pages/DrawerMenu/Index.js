@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, DrawerLayoutAndroid, ScrollView, TouchableOpacity, Image, StatusBar } from 'react-native'
+import { View, Text, DrawerLayoutAndroid, ScrollView, TouchableOpacity, Image, StatusBar,ToastAndroid } from 'react-native'
 // import store from '../../Store/StoreRedux'
 // import TabRouter from '../../Router/TabRouter/TabRouter'
 import { Icon } from '@ant-design/react-native'
@@ -8,6 +8,9 @@ import Discovery from '../Discovery/Index'
 import CloudCountry from '../CloudCountry/Index'
 import Video from '../Video/Index'
 import config from '../../config'
+import store from '../../Store/StoreRedux'
+import {connect} from 'react-redux'
+import Axios from 'axios';
 // import Find from '../Find/Index'
 class DrawerIndex extends React.Component {
   constructor(props) {
@@ -16,6 +19,8 @@ class DrawerIndex extends React.Component {
       playstate: false,
       lastPanel: 'Mine',
       activePanel: 'Mine',
+      barstatus:true,
+      userdetail:{},
       Avatar: { Img: require('../../Asserts/Icons/User/user.png'), name: 'ServletAction', level: 5 },
       DrawerPagesMy: [
         { tag: '', path: require('../../Asserts/Icons/DrawerPageMy/我的消息.png'), name: '我的消息' },
@@ -48,9 +53,38 @@ class DrawerIndex extends React.Component {
   // }
   // }
   componentDidMount() {
+    this.setState({
+      userdetail:store.getState().loginAction.loginDetail
+  })
     this.refs[this.state.activePanel].setOpacityTo(1, 0);
+
+  }
+  updatesigned=()=>{
+    Axios.get(`${config.serverUrl}/Mine/signed?token=${this.state.userdetail.tooken}`).then(res=>{
+      console.log(res)
+      if(res.status==200){
+        // console.log(res.data.msg)
+        this.setState({
+          userdetail:{
+            ...this.state.userdetail,
+            signed:'1'
+          }
+        })
+      }
+      ToastAndroid.show(res.data.msg,2000)
+    })
   }
   changeTab = (tabname) => {
+    if(tabname=='Mine'){
+      this.setState({
+        barstatus:true//黑色
+      })
+    }
+    else{
+      this.setState({
+        barstatus:false//白色
+      })
+    }
     this.setState({
       lastPanel: this.state.activePanel,
       activePanel: tabname
@@ -58,14 +92,16 @@ class DrawerIndex extends React.Component {
       this.refs[this.state.lastPanel].setOpacityTo(0.6, 0);
       this.refs[this.state.activePanel].setOpacityTo(1, 0);
     })
-
-
-
+  }
+  goMusic=()=>{
+    console.log('goMusic')
+    if(store.getState().musicAction.musicDetail!=undefined&&store.getState().musicAction.musicDetail!=null)
+    this.props.navigation.navigate('PlayerMusic',{musicDetail:store.getState().musicAction.musicDetail})
   }
   render() {
     const navigationView = (
       <ScrollView>
-        <StatusBar hidden={true} />
+        <StatusBar  backgroundColor={this.state.barstatus?'#000':'#fff'} barStyle={this.state.barstatus?'light-content':'dark-content'}/>
         <View style={{ flex: 1, backgroundColor: '#fff' }}>
           <View style={{ flexDirection: 'column', backgroundColor: '#eee', paddingBottom: 30, paddingLeft: 20, paddingTop: 20 }}>
             <TouchableOpacity onPress={()=>this.props.navigation.navigate('UserDetail')} >
@@ -75,13 +111,13 @@ class DrawerIndex extends React.Component {
             <View style={{ flexDirection: "row", justifyContent: 'space-between', marginTop: 10 }}>
               <TouchableOpacity >
                 <View style={{ flexDirection: "row", justifyContent: 'space-around' }}>
-                  {/* <Text>{this.state.userdetail.name}</Text> */}
-                  {/* <Text style={{ marginLeft: 5, borderRadius: 9, padding: 4,borderColor:'#ccc', backgroundColor: '#aaa', fontSize: 10 }}>Lv.{this.state.userdetail.level}</Text> */}
+                  <Text>{this.state.userdetail.name}</Text>
+                  <Text style={{ marginLeft: 5, borderRadius: 9, padding: 4,borderColor:'#ccc', backgroundColor: '#aaa', fontSize: 10 }}>Lv.{this.state.userdetail.level}</Text>
                 </View>
               </TouchableOpacity>
-              {/* <TouchableOpacity style={{backgroundColor:this.state.userdetail.signed=='1'?'rgba(255,255,255,0)':'#f00'}}>
+              <TouchableOpacity style={{backgroundColor:this.state.userdetail.signed=='1'?'rgba(255,255,255,0)':'#f00'}}>
                   <Text onPress={this.updatesigned} style={{borderWidth:this.state.userdetail.signed=='1'?1:0,borderColor:'#aaa', marginRight: 10, borderRadius: 10, padding: 5, fontSize: 10, color:this.state.userdetail.signed=='1'?'#888':'#fff' }}>{this.state.userdetail.signed=='1'?'已签到':'签到'} ></Text>
-                </TouchableOpacity> */}
+                </TouchableOpacity>
             </View>
           </View>
 
@@ -138,6 +174,7 @@ class DrawerIndex extends React.Component {
               <Text style={{ fontSize: 18, fontWeight: 'bold', color: this.state.activePanel == 'Mine' ? 'white' : 'black' }}>三</Text>
             </TouchableOpacity>
             <TouchableOpacity
+              // userdetail={this.state.userdetail}
               style={{ marginLeft: 10, opacity: 0.6 }}
               ref="Mine"
               onPress={() => this.changeTab('Mine')
@@ -196,16 +233,15 @@ class DrawerIndex extends React.Component {
             {/* <Find navigation={this.props.navigation}/> */}
           </ScrollView>
 
-
-
         </View>
-        {/* 播放器 */}
-        <View style={{ opacity: (this.state.loginstatus == 0 || this.state.loginstatus == 4 || this.state.loginstatus == 5) ? 0 : 1, width: '100%', bottom: 0, height: 60, position: 'absolute', zIndex: 9999, borderTopWidth: 0.3, borderTopColor: '#eee', flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center', backgroundColor: 'white' }}>
+        {/* 播放器 */} 
+        <TouchableOpacity onPress={this.goMusic} 
+        style={{ opacity: (this.state.loginstatus == 0 || this.state.loginstatus == 4 || this.state.loginstatus == 5) ? 0 : 1, width: '100%', bottom: 0, height: 60, position: 'absolute', zIndex: 9999, borderTopWidth: 0.3, borderTopColor: '#eee', flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center', backgroundColor: 'white' }}>
           <View style={{ flexDirection: 'row' }}>
-            <Image source={{ uri: config.resourceServer + '/WebView/Imgs/4.jpg' }} style={{ width: 40, height: 40, borderRadius: 20 }} />
+            <Image source={{ uri: store.getState().musicAction.musicDetail?`${config.resourceServer}/WebView/Imgs/${store.getState().musicAction.musicDetail.image}.jpg`:'http://localhost/WebView/Imgs/4.jpg' }} style={{ width: 40, height: 40, borderRadius: 20 }} />
             <View style={{ marginLeft: 5 }}>
-              <Text style={{ fontSize: 14 }}>Attention</Text>
-              <Text style={{ fontSize: 10, color: '#aaa' }}>横屏可以切换上下首</Text>
+              <Text style={{ fontSize: 14 }}>{store.getState().musicAction.musicDetail?store.getState().musicAction.musicDetail.name:'暂无播放歌曲'}</Text>
+              <Text style={{ fontSize: 10, color: '#aaa' }}>{store.getState().musicAction.musicDetail?store.getState().musicAction.musicDetail.author:'无'}</Text>
             </View>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -214,10 +250,15 @@ class DrawerIndex extends React.Component {
             {/* <Image source={require('../../Asserts/Icons/User/user.png')} style={{ width: 40, height: 40, borderRadius: 20 }} />
             <Image source={require('../../Asserts/Icons/User/user.png')} style={{ width: 40, height: 40, borderRadius: 20 }} /> */}
           </View>
-        </View>
+        </TouchableOpacity>
       </DrawerLayoutAndroid>
     )
   }
 }
+const mapStateToProps=(state)=>{
+  if(state!=undefined&&state!=null){
+    return {state}
+  }
+}
 
-export default DrawerIndex;
+export default connect(mapStateToProps)(DrawerIndex);

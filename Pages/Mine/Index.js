@@ -1,11 +1,13 @@
 import React from 'react'
 import { View, Text, ScrollView, Image, TouchableOpacity ,ToastAndroid} from 'react-native'
-import AsyncStorage from '@react-native-community/async-storage'
+// import AsyncStorage from '@react-native-community/async-storage'
 import CollectiongSong from './MineItems/Tabs/CollectiongSong'
 import CreateSong from './MineItems/Tabs/CreateSong'
 import Axios from 'axios';
 import config from '../../config'
 import {Icon} from '@ant-design/react-native'
+// import {connect} from 'react-redux'
+import store from '../../Store/StoreRedux'
 class MineIndex extends React.Component {
     constructor(props) {
         super(props);
@@ -19,14 +21,18 @@ class MineIndex extends React.Component {
                 { src: require('../../Asserts/Icons/Mine/我的电台.png'), name: '我的电台',goName:'MyAudio'},
                 { src: require('../../Asserts/Icons/Mine/我的收藏.png'), name: '我的收藏',goName:'MyCollection'},
                 { src: require('../../Asserts/Icons/Mine/关注新歌.png'), name: '关注新歌',goName:'FocusMusic' },
-            ]
+            ],
         };
     }
     componentDidMount(){
-        let user=this.getData()
+        // let user=this.getData()
         // console.log(user)
+        // this.setState({
+        //     userdetail:user
+        // })
+        // console.log(store.getState())
         this.setState({
-            userdetail:user
+            userdetail:store.getState().loginAction.loginDetail
         })
     }
     static navigationOptions = {
@@ -41,28 +47,28 @@ class MineIndex extends React.Component {
             show:pageno
         })
     }
-    getData = async () => {
-        try {
-            var userdetail_name = await AsyncStorage.getItem('userdetail_name')
-            var userdetail_level = await AsyncStorage.getItem('userdetail_level')
-            var userdetail_mobile = await AsyncStorage.getItem('userdetail_mobile')
-            var userdetail_tooken = await AsyncStorage.getItem('userdetail_tooken')
-            var userdetail_signed = await AsyncStorage.getItem('userdetail_signed')
-            var userdetail_foncuser = await AsyncStorage.getItem('userdetail_foncuser')
-            var userdetail_fans = await AsyncStorage.getItem('userdetail_fans')
-            return {
-              name:userdetail_name,
-              level:userdetail_level,
-              mobile:userdetail_mobile,
-              tooken:userdetail_tooken,
-              signed:userdetail_signed,
-              foncuser:userdetail_foncuser,
-              fans:userdetail_fans
-            } 
-        } catch(e) {
-          // error reading value
-        }
-      }
+    // getData = async () => {
+    //     try {
+    //         var userdetail_name = await AsyncStorage.getItem('userdetail_name')
+    //         var userdetail_level = await AsyncStorage.getItem('userdetail_level')
+    //         var userdetail_mobile = await AsyncStorage.getItem('userdetail_mobile')
+    //         var userdetail_tooken = await AsyncStorage.getItem('userdetail_tooken')
+    //         var userdetail_signed = await AsyncStorage.getItem('userdetail_signed')
+    //         var userdetail_foncuser = await AsyncStorage.getItem('userdetail_foncuser')
+    //         var userdetail_fans = await AsyncStorage.getItem('userdetail_fans')
+    //         return {
+    //           name:userdetail_name,
+    //           level:userdetail_level,
+    //           mobile:userdetail_mobile,
+    //           tooken:userdetail_tooken,
+    //           signed:userdetail_signed,
+    //           foncuser:userdetail_foncuser,
+    //           fans:userdetail_fans
+    //         } 
+    //     } catch(e) {
+    //       // error reading value
+    //     }
+    //   }
       panelno=(pageno)=>{
           this.setState({
               show:pageno
@@ -70,6 +76,10 @@ class MineIndex extends React.Component {
       }
       stackNavigation(routername){
         //   console.log(routername)
+        if(routername=='UserDetail'){
+            this.props.navigation.navigate(routername,{userdetail:this.state.userdetail})
+        }
+        else
         this.props.navigation.navigate(routername)
       }
       SR_FM=()=>{
@@ -115,9 +125,9 @@ class MineIndex extends React.Component {
                         <TouchableOpacity style={{ flexDirection: 'row' }}  onPress={this.stackNavigation.bind(this,'UserDetail')}>
                             {/* <Image source={require('../../Asserts/Icons/User/user.png')} style={{ width: 70, height: 70, borderRadius: 35 }} /> */}
                             <Icon name='user' size='lg' color='white' style={{padding:10,borderRadius:30,backgroundColor:'#ccc'}}/>
-                            <View style={{ alignSelf:'center', marginLeft: 20 }}>
+                            <View style={{ alignSelf:'center',alignItems:'center', marginLeft: 20 }}>
                                 <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>{this.state.userdetail.name}</Text>
-                                <Text style={{ color: 'white', fontSize: 10, backgroundColor: '#888', textAlign: 'center', padding:this.state.userdetail.level? 2:0, borderRadius: 10, marginTop: 5 }}>{this.state.userdetail.level?'Lv.'+this.state.userdetail.level:''}</Text>
+                                <Text style={{ color: 'white', fontSize: 10,width:40, backgroundColor: '#888', textAlign: 'center', padding:this.state.userdetail.level? 2:0, borderRadius: 10, marginTop: 5 }}>{this.state.userdetail.level?'Lv.'+this.state.userdetail.level:''}</Text>
                             </View>
                         </TouchableOpacity>
                         <Text style={{ color: '#ccc', fontSize: 10, alignSelf: 'center' }}>新客仅5元 ></Text>
@@ -252,5 +262,10 @@ class MineIndex extends React.Component {
         );
     }
 }
-
+// const mapStateToProps=(state)=>{
+//     if(state){
+//         return {state}
+//     }
+// }
+// export default connect(mapStateToProps)(MineIndex);
 export default MineIndex;

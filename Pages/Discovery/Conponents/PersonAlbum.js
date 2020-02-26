@@ -15,8 +15,10 @@ class PersonAlbum extends React.Component {
        
     }
     componentWillUnmount(){
+        if(this.sound){
         this.sound.release()
         this.sound=null
+    }
     }
     playalbummusic=(musicname,musictype)=>{
         let m_uri=`${config.resourceServer}/WebView/${musicname}.${musictype}`

@@ -1,43 +1,45 @@
 import React from 'react'
 import { View, Text, Dimensions, TextInput,ToastAndroid } from 'react-native'
-import AsyncStorage from '@react-native-community/async-storage'
+// import AsyncStorage from '@react-native-community/async-storage'
 import Axios from 'axios'
 import config from '../../config'
 // import { Button } from '@ant-design/react-native';
+import {connect} from 'react-redux'
+import {setLogin} from '../../Store/actionList'
+import store from '../../Store/StoreRedux'
 const { height } = Dimensions.get('window')
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username:'',
-            password:''
+            username:'19925956050',
+            password:'123456'
         }
     }
-    setData = async (userdetail) => {
-        let userdetail_name=userdetail.name
-        let userdetail_level=userdetail.level
-        let userdetail_mobile=userdetail.mobile
-        let userdetail_tooken=userdetail.tooken
-        let userdetail_foncuser=userdetail.foncuser
-        let userdetail_fans=userdetail.fans
-        try {
-          await AsyncStorage.setItem('userdetail_name', userdetail_name)
-          await AsyncStorage.setItem('userdetail_level', userdetail_level)
-          await AsyncStorage.setItem('userdetail_mobile', userdetail_mobile)
-          await AsyncStorage.setItem('userdetail_tooken', userdetail_tooken)
-          await AsyncStorage.setItem('userdetail_signed', userdetail_signed)
-          await AsyncStorage.setItem('userdetail_foncuser', userdetail_foncuser)
-          await AsyncStorage.setItem('userdetail_fans', userdetail_fans)
-        } catch (e) {
-          // saving error
-        }
-      }
+    // setData = async (userdetail) => {
+    //     let userdetail_name=userdetail.name
+    //     let userdetail_level=userdetail.level
+    //     let userdetail_mobile=userdetail.mobile
+    //     let userdetail_tooken=userdetail.tooken
+    //     let userdetail_foncuser=userdetail.foncuser
+    //     let userdetail_fans=userdetail.fans
+    //     try {
+    //       await AsyncStorage.setItem('userdetail_name', userdetail_name)
+    //       await AsyncStorage.setItem('userdetail_level', userdetail_level)
+    //       await AsyncStorage.setItem('userdetail_mobile', userdetail_mobile)
+    //       await AsyncStorage.setItem('userdetail_tooken', userdetail_tooken)
+    //       await AsyncStorage.setItem('userdetail_signed', userdetail_signed)
+    //       await AsyncStorage.setItem('userdetail_foncuser', userdetail_foncuser)
+    //       await AsyncStorage.setItem('userdetail_fans', userdetail_fans)
+    //     } catch (e) {
+    //       // saving error
+    //     }
+    //   }
     tologin=()=>{ //192.168.0.112
-        // console.log(config.serverUrl)
+
         Axios.get(`${config.serverUrl}/login/logon?username=${this.state.username}&password=${this.state.password}`).then(res=>{
-            // console.log(res)
             if(res.status==200){
-                this.setData(res.data.result)
+                this.props.setLogin(res.data[0])
                 ToastAndroid.show('登录成功',2000)
                 this.props.navigation.navigate('MainRouter')
                 // this.props.changstackpage(1)
@@ -71,5 +73,9 @@ class Login extends React.Component {
         );
     }
 }
-
-export default Login;
+const mapStateToProps=state=>{
+    if(state!=undefined||state!=null){
+        return {state}
+    }
+}
+export default connect(mapStateToProps,{setLogin})(Login);

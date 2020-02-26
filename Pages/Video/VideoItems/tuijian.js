@@ -12,7 +12,7 @@ class tuijian extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            playstatus: 1,
+            playstatus: 0, // 1:播放第一个视频
             tuijianContents: []
             // tuijianContents: [
             // { name: '《感谢你曾经来过》', nameimg: {uri: config.resourceServer + '/WebView/Video/推荐/a.jpg'}, played: '12万', timelong: '00:58',  authorImg:  {uri: config.resourceServer + '/WebView/User/u3.jpg'}, author: '念宁', supportor: '20015', discussion: '1205', flag: '直播中的美少女' },

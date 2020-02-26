@@ -1,17 +1,23 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import config from '../../../config'
 class Look extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
     }
+    // componentDidMount(){
+    //     console.log(config.LookServer)
+    // }
+    // goRouter=()=>{
+    //     this.props.navigation.navigate('LookWebView',{playurl:config.LookServer})
+    // }
     render() {
         return (
             <View style={{ display: this.props.isshow ? 'flex' : 'none', marginBottom: 150, marginLeft: 10, marginRight: 10 }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', padding: 10 }}>
-                    <View style={{ borderColor: '#eee', borderWidth: 1, padding: 20, borderRadius: 10 }}>
+                    <View  style={{ borderColor: '#eee', borderWidth: 1, padding: 20, borderRadius: 10 }}>
                         <Text>明星榜</Text>
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
                             <Image source={{uri: config.resourceServer + '/WebView/User/u2.jpg'}} style={{ width: 30, height: 30, borderRadius: 15 }} />

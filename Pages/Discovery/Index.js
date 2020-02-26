@@ -96,12 +96,12 @@ class DiscoveryIndex extends React.Component {
                             </View>
                             <Text style={{ fontSize: 12, alignSelf: 'center' }}>电台</Text>
                         </View>
-                        <View>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('LookWebView',{playurl:config.LookServer})}>
                             <View style={{ backgroundColor: 'red', alignItems: 'center', paddingTop: '10%', width: 50, height: 50, borderRadius: 25 }}>
                                 <Icon size='lg' name='aliyun' color='#fff' />
                             </View>
                             <Text style={{ fontSize: 12, alignSelf: 'center' }}>直播</Text>
-                        </View>
+                        </TouchableOpacity>
 
 
 

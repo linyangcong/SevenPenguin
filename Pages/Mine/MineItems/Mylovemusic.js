@@ -3,6 +3,7 @@ import { Text, View, Image, ScrollView, TouchableOpacity,ToastAndroid ,StatusBar
 import Axios from 'axios'
 import config from '../../../config'
 import { Icon } from '@ant-design/react-native';
+
 // const { height } = Dimensions.get('window').height
 class MyLoveMusice extends React.Component {
     constructor(props) {
@@ -17,24 +18,6 @@ class MyLoveMusice extends React.Component {
             musiclist: [
                 // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
                 // { name: '世间美好与你环环相扣', flag: { only: false, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: false, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
-                // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
                 // { name: '世间美好与你环环相扣', flag: { only: true, SQ: true }, author: '柏松-听闻余生' },
             ]
         }
@@ -63,17 +46,19 @@ class MyLoveMusice extends React.Component {
             actplayId:item.id
         })
         // if(item.flag.only) 
+        
+        // console.log(store.getState().musicAction)
         this.props.navigation.navigate('PlayerMusic',{
             musicDetail:item,
-            soundObj:this.state.soundObj,
-            timeOut:this.state.timeOut,
-            callback:(playId,soundObj,timeOut)=>{
-                this.setState({
-                    playId,
-                    soundObj,
-                    timeOut,
-                }
-                    )},
+            // soundObj:this.state.soundObj,
+            // timeOut:this.state.timeOut,
+            // callback:(playId,soundObj,timeOut)=>{
+            //     this.setState({
+            //         playId,
+            //         soundObj,
+            //         timeOut,
+            //     }
+            //         )},
             // listenToProgress:(musicprogress)=>{
             //     this.setState({
             //         musicprogress
@@ -87,32 +72,27 @@ class MyLoveMusice extends React.Component {
     render() {
         return (
             <View style={{ backgroundColor: 'black' }}>
-                <StatusBar hidden={true} />
                 <View style={{ backgroundColor: '#000' }}>
                     <ScrollView
-                        onPress={() => { this.setState({ scrollflag: true }) }}
+                        // onPress={() => { this.setState({ scrollflag: true }) }}
                         scrollEnabled={this.state.scrollflag}
                         showsVerticalScrollIndicator={false}
                         stickyHeaderIndices={[0]}
                         // scrollTo={() => { return { x: 100, y: 200, animated: true }; }}
                         onScroll={(event) => {
                             // console.log(event.nativeEvent.contentOffset.y)
-                            if (event.nativeEvent.contentOffset.y >= 100) {
-                                this.setState({ topposition: false })
+                            if (event.nativeEvent.contentOffset.y >= 140) {
+                                this.setState({ 
+                                    topposition: false ,
+                                    scrollflag:false
+                                })
                             }
                             else {
-                                this.setState({ topposition: true })
+                                this.setState({ 
+                                    topposition: true,
+                                    scrollflag:true 
+                                })
                             }
-                            // if(event.nativeEvent.contentOffset.y>=140){
-                            //     this.setState({
-                            //         scrollflag:false
-                            //     })
-                            // }
-                            // else{
-                            //     this.setState({
-                            //         scrollflag:true
-                            //     })
-                            // }
 
                         }}
                     >
@@ -156,19 +136,19 @@ class MyLoveMusice extends React.Component {
                                 // scrollEnabled={true}
                                 scrollEnabled={!this.state.scrollflag}
                                 style={{ maxHeight: 650 }}
-                            // onScroll={(event) => {
-                            //     console.log(event.nativeEvent.contentOffset.y)
-                            //     if(event.nativeEvent.contentOffset.y<=300){
-                            //         this.setState({
-                            //             scrollflag:true
-                            //         })
-                            //     }
-                            //     else{
-                            //         this.setState({
-                            //             scrollflag:false
-                            //         })
-                            //     }
-                            // }}
+                            onScroll={(event) => {
+                                console.log(event.nativeEvent.contentOffset.y)
+                                if(event.nativeEvent.contentOffset.y<80){
+                                    this.setState({
+                                        scrollflag:true
+                                    })
+                                }
+                                else{
+                                    this.setState({
+                                        scrollflag:false
+                                    })
+                                }
+                            }}
                             >
                                 <View style={{ marginBottom: 60 }}>
                                     {
@@ -209,5 +189,6 @@ class MyLoveMusice extends React.Component {
         );
     }
 }
+
 
 export default MyLoveMusice;

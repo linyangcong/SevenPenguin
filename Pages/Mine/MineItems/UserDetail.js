@@ -1,12 +1,19 @@
 import React from 'react'
 import { Text, View, Image } from 'react-native'
+import {Icon} from '@ant-design/react-native'
 class UserDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             tabflag: 0,
             dataflag:true,
+            userdetail:{}
         }
+    }
+    componentDidMount(){
+        this.setState({
+            userdetail:this.props.navigation.getParam('userdetail')
+        })
     }
     render() {
         return (
@@ -18,14 +25,15 @@ class UserDetail extends React.Component {
                 </View>
                 <Text style={{ color: 'white', alignSelf: 'center', textAlign: 'center', fontSize: 16, fontWeight: 'bold' }}>用户信息中心</Text>
                 <View style={{ padding: 20 }}>
-                    <Image source={require('../../../Asserts/Icons/User/user.png')} style={{ height: 60, width: 60, borderRadius: 30 }} />
-                    {/* <Text style={{ color: 'white', marginTop: 5 }}>{this.props.userdetail.name}</Text> */}
+                    <Icon name='user' size='lg' color='white' style={{padding:10,borderRadius:30,backgroundColor:'#ccc',height: 60, width: 60,}}/>
+                    {/* <Image source={require('../../../Asserts/Icons/User/user.png')} style={{ height: 60, width: 60, borderRadius: 30 }} /> */}
+                    <Text style={{ color: 'white', marginTop: 5 }}>{this.state.userdetail.name}</Text>
                     <View style={{ flexDirection: 'row' }}>
-                        {/* <Text style={{ color: 'white', textAlign: 'center', marginRight: 10, fontSize: 10 }}>关注  {this.props.userdetail.foncuser}  </Text>
-                        <Text style={{ color: 'white', textAlign: 'center', marginRight: 10, fontSize: 10 }}>粉丝  {this.props.userdetail.fans}</Text> */}
+                        <Text style={{ color: 'white', textAlign: 'center', marginRight: 10, fontSize: 10 }}>关注  {this.state.userdetail.foncuser}  </Text>
+                        <Text style={{ color: 'white', textAlign: 'center', marginRight: 10, fontSize: 10 }}>粉丝  {this.state.userdetail.fans}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        {/* <Text style={{ fontSize: 10, color: 'white', textAlign: 'center', backgroundColor: '#666', padding: 2, borderRadius: 8, alignSelf: 'center' }}>  {this.props.userdetail.level ? `Lv.${this.props.userdetail.level}` : `Lv.0`}  </Text> */}
+                        {/* <Text style={{ fontSize: 10, color: 'white', textAlign: 'center', backgroundColor: '#666', padding: 2, borderRadius: 8, alignSelf: 'center' }}>  {this.state.userdetail.level ? `Lv.${this.state.userdetail.level}` : `Lv.0`}  </Text> */}
                         <View style={{ flexDirection: 'row' }}>
                             <Text style={{ fontSize: 12, color: 'white', backgroundColor: '#666', padding: 4, borderRadius: 10, textAlign: 'center' }}>  编辑  </Text>
                             <Text style={{ fontSize: 12, color: 'white', backgroundColor: '#666', padding: 4, borderRadius: 10, textAlign: 'center', marginLeft: 10 }}>  更换背景  </Text>

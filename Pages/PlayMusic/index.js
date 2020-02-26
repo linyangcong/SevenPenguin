@@ -3,6 +3,9 @@ import config from '../../config'
 import { View, Text, Image, Dimensions, Animated, Easing, StyleSheet, TouchableOpacity, StatusBar } from 'react-native'
 // import ProgressItem from './ProgressItem'
 import Sound from 'react-native-sound';
+import {connect} from 'react-redux'
+import {setMusic} from '../../Store/actionList'
+import store from '../../Store/StoreRedux'
 // import Axios from 'axios'
 import { Icon, Progress } from '@ant-design/react-native';
 const { height, width } = Dimensions.get('window')
@@ -17,7 +20,7 @@ class PlayMusic extends React.Component {
             playSeconds:0,
             musciPath:{
                 uri:`${config.resourceServer}/WebView/${this.props.navigation.getParam('musicDetail').name}.${this.props.navigation.getParam('musicDetail').music_type}`},
-            playState: 'paused', //playing, paused
+            playState: false, //true, paused
             durations: 0,
             operationtools: [
                 { name: 'heart' },
@@ -40,50 +43,62 @@ class PlayMusic extends React.Component {
         this.playbarVallue=new Animated.Value(0)
     }
     componentDidMount() {
-    //    console.log(this.props.navigation.getParam('musicDetail'))
-        // if(this.props.navigation.getParam('soundObj')&&this.props.navigation.getParam('soundObj')!=undefined){
-        //     this.sound=this.props.navigation.getParam('soundObj')
-        //     this.setState({
-        //         durations:this.sound.getDuration()
-        //     })
-        //     return ;
-        // }
         this.setState({
             shutdown:this.props.navigation.getParam('shutdown')
         })
-        if(this.sound||this.sound!=undefined){
-            this.sound.release();
-            this.sound = null;
-            clearTimeout(this.timeout)
+        if(store.getState().musicAction.musicObj||store.getState().musicAction.musicObj!=undefined){
+                if(store.getState().musicAction.musicObj._filename==this.state.musciPath.uri){
+                    this.setState({
+                        playState:true,
+                        durations:store.getState().musicAction.musicObj.getDuration()
+                    },()=>{
+                    this.playbar()
+                    console.log(this.state.durations)
+                    this.spin()
+                    })
+                    this.CurrentTimer()
+                    
+                }
+                // console.log(store.getState().musicAction.musicObj._filename)
+                // console.log(this.state.percent,seconds)
+                // this.props.navigation.state.params.listenToProgress(this.state.percent)
+            
+            // store.getState().musicAction.musicObj.release();
+            // store.getState().musicAction.musicObj = null;
+            // clearTimeout(this.timeout)
         }
-        this.sound = new Sound(this.state.musciPath,(error) => {
-            if (error) {
-                this.setState({ playState: 'paused' });
-                return;
-            }
-            this.setState({
-                durations:this.sound.getDuration()
-            })
-        });
-    }
-    componentWillUnmount(){
-        if(this.state.shutdown){
-            this.sound.release();
-            this.sound = null;
-        }
+        // store.getState().musicAction.musicObj = new Sound(this.state.musciPath,(error) => {
+        //     if (error) {
+        //         this.setState({ playState: false });
+        //         return;
+        //     }
+        //     this.setState({
+        //         durations:store.getState().musicAction.musicObj.getDuration()
+        //     })
+        // });
     }
     // componentWillUnmount(){
-    //     if(this.sound){
-    //         this.sound.release();
-    //         this.sound = null;
-    //     }
-    //     if (this.timeout) {
-    //         clearInterval(this.timeout);
+    //     if(this.state.shutdown){
+    //         store.getState().musicAction.musicObj.release();
+    //         store.getState().musicAction.musicObj = null;
     //     }
     // }
+    componentWillUnmount(){
+        // if(store.getState().musicAction.musicObj){
+        //     store.getState().musicAction.musicObj.release();
+        //     store.getState().musicAction.musicObj = null;
+        // }
+        // if (this.timeout) {
+        //     clearInterval(this.timeout);
+        // }
+        // if(this.state.shutdown){
+        //             store.getState().musicAction.musicObj.release();
+        //             store.getState().musicAction.musicObj = null;
+        //         }
+    }
     spin = () => {
         this.spinValue.setValue(0)
-        // if(this.state.playState == 'playing')
+        // if(this.state.playState)
             Animated.timing(this.spinValue, {
                 toValue: 1, // 最终值 为1，这里表示最大旋转 360度
                 duration: this.state.durations*1000,
@@ -92,7 +107,7 @@ class PlayMusic extends React.Component {
     }
     stopspin = () => {
         this.spinValue.setValue(0)
-        // if(this.state.playState == 'playing')
+        // if(this.state.playState)
             Animated.timing(this.spinValue, {
                 toValue: 0, // 最终值 为1，这里表示最大旋转 360度
                 duration: 0,
@@ -115,43 +130,48 @@ class PlayMusic extends React.Component {
         // console.log(1)
     }
     playmusic() {
-            if (this.state.playState == 'playing') {
-                if (this.sound) {
+        // this.props.setMusic(this.props.navigation.getParam('musicDetail'))
+            if (this.state.playState) {
+                if (store.getState().musicAction.musicObj!=null&&store.getState().musicAction.musicObj!=undefined) {
                     this.stopspin()
                     setTimeout(() => {
                         this.stopplaybar()
                     },500)
 
-                    this.sound.release();
-                    this.sound = null;
+                    store.getState().musicAction.musicObj.release();
+                    store.getState().musicAction.musicObj = null;
                 }
 
                 if (this.timeout) {
                     clearInterval(this.timeout);
                 }
                 this.setState({
-                    playState: 'paused'
+                    playState: false
                 })
             }
-            else if (this.state.playState == 'paused') {
+            else if (!this.state.playState) {
                 if(this.props.navigation.getParam('soundObj')!=undefined&&this.props.navigation.getParam('soundObj').release()!=undefined){
                     this.props.navigation.getParam('soundObj').release()
                 }
                 if(this.props.navigation.getParam('timeOut')){
                     clearTimeout(this.props.navigation.getParam('timeOut'))
                 }
-                if(!this.sound){
+                if(store.getState().musicAction.musicObj==null&&store.getState().musicAction.musicObj==undefined){
+                    //store.getState().musicAction.musicObj
                     this.sound = new Sound(this.state.musciPath,(error) => {
                         if (error) {
-                            this.setState({ playState: 'paused' });
+                            this.setState({ playState: false });
                             return;
                         }
                         this.setState({
-                            durations:this.sound.getDuration()
+                            durations: this.sound.getDuration()
                         })
                     });
+                this.props.setMusic({musicDetail:this.props.navigation.getParam('musicDetail'),obj:this.sound})
+                // this.sound.release()
+                // this.sound=null;
                 }
-                this.props.navigation.state.params.callback(this.props.navigation.getParam('musicDetail').id,this.sound,this.timeout)
+                // this.props.navigation.state.params.callback(this.props.navigation.getParam('musicDetail').id,store.getState().musicAction.musicObj,this.timeout)
                 this.playbar();
                 setTimeout(() => {
                     this.play();
@@ -164,8 +184,17 @@ class PlayMusic extends React.Component {
     }
     CurrentTimer=()=>{
         this.timeout = setInterval(() => {
-            if (this.sound && this.sound.isLoaded() && this.state.playState == 'playing' && !this.sliderEditing) {
-                this.sound.getCurrentTime((seconds, isPlaying) => {
+            if (store.getState().musicAction.musicObj && store.getState().musicAction.musicObj.isLoaded() && this.state.playState) {
+                store.getState().musicAction.musicObj.getCurrentTime((seconds, isPlaying) => {
+                    if(this.state.percent==1){
+                        this.setState({
+                            playSeconds:0,
+                            percent:0,
+                            playState:false
+                        })
+                        this.stopplaybar()
+                        this.stopspin()
+                    }
                     this.setState({percent:(this.state.playSeconds/this.state.durations)*100, playSeconds: seconds });
                     // this.props.navigation.state.params.listenToProgress(this.state.percent)
                 })
@@ -173,8 +202,11 @@ class PlayMusic extends React.Component {
         }, 1000);
     }
     play =() => {
-            // this.setState({ durations: this.sound.getDuration()});
-            this.sound.play((success) => {
+
+            // this.setState({ durations: store.getState().musicAction.musicObj.getDuration()});
+            console.log(store.getState().musicAction.musicObj)
+            console.log(this.sound)
+            store.getState().musicAction.musicObj.play((success) => {
                 if(success){
                     setTimeout(() => {
                         this.stopplaybar();
@@ -183,15 +215,17 @@ class PlayMusic extends React.Component {
                     if (this.timeout) {
                         clearInterval(this.timeout);
                     }
-                    this.setState({ playState: 'paused', playSeconds: 0 });
-                    this.sound.setCurrentTime(0);
-                    if (this.sound) {
-                        this.sound.release();
-                        this.sound = null;
+                    this.setState({ playState: false, playSeconds: 0 });
+                    store.getState().musicAction.musicObj.setCurrentTime(0);
+                    if (store.getState().musicAction.musicObj) {
+                        store.getState().musicAction.musicObj.release();
+                        store.getState().musicAction.musicObj = null;
+                        this.sound.release()
+                        this.sound=null
                     }
                 }
             });
-            this.setState({ playState: 'playing' });
+            this.setState({ playState: true });
     }
     nextPlay(){
         // console.log(3)
@@ -200,11 +234,11 @@ class PlayMusic extends React.Component {
         // console.log(4)
     }
     // pause = () => {
-    //     if(this.sound){
-    //         this.sound.pause();
+    //     if(store.getState().musicAction.musicObj){
+    //         store.getState().musicAction.musicObj.pause();
     //     }
 
-    //     this.setState({playState:'paused'});
+    //     this.setState({playState:false});
     // }
     getAudioTimeString(seconds) {
         const m = parseInt(seconds % (60 * 60) / 60);
@@ -275,7 +309,7 @@ class PlayMusic extends React.Component {
                                 {/* <View style={{ backgroundColor: '#888', width: (width - 120), height: 1, alignSelf: 'center' }}>
                                     <View style={{ backgroundColor: '#ccc', height: 2, width: `${this.state.timing}%`, position: 'absolute' }}></View>
                                 </View> */}
-                                <Progress percent={this.state.playState=='playing'?this.state.percent:(this.state.playState=='paused'?0:100)} style={{ marginLeft: 20, marginRight: 20, height: 3 }} />
+                                <Progress percent={this.state.playState?this.state.percent:(!this.state.playState?0:100)} style={{ marginLeft: 20, marginRight: 20, height: 3 }} />
                                 <Text style={[progress.progressFont, { marginRight: 20 }]}>{durationString}</Text>
                             </View>
                         </View>
@@ -283,7 +317,7 @@ class PlayMusic extends React.Component {
                             {
                                 this.state.playtools.map((item, index) =>
                                     <TouchableOpacity key={'operation' + index} onPress={() => this.clickBottomTool(index)}>
-                                        <Icon name={index == 2 & this.state.playState == 'playing' ? item.name : (index == 2 & this.state.playState == 'paused' ? item.name1 : item.name)} key={index} size={index == 2 ? 'lg' : 'xs'} />
+                                        <Icon name={index == 2 & this.state.playState ? item.name : (index == 2 & !this.state.playState  ? item.name1 : item.name)} key={index} size={index == 2 ? 'lg' : 'xs'} />
                                     </TouchableOpacity>
                                 )
                             }
@@ -307,4 +341,9 @@ const progress = StyleSheet.create({
         width: 40
     }
 })
-export default PlayMusic;
+const mapStateToProps=(state)=>{ //监听所有的state
+    if(state!=undefined&&state!=null){
+        return {state}
+    }
+}
+export default connect(mapStateToProps,{setMusic})(PlayMusic);
