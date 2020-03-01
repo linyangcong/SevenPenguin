@@ -66,7 +66,7 @@ class tuijian extends React.Component {
     }
     render() {
         return (
-            <View style={{ display: this.props.isshow ? 'flex' : 'none', backgroundColor: '#f2f2f2', marginBottom: 120 }}>
+            <View style={{ backgroundColor: '#f2f2f2', marginBottom: 120 }}>
                 {
                     this.state.tuijianContents.map((item, index) =>
                         <View key={index} style={{ backgroundColor: 'white', padding: 10, marginBottom: 10 }}>

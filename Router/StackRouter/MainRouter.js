@@ -47,8 +47,11 @@ import NearlyPlay from '../../Pages/Mine/NearlyPlay'
 import SongList from '../../Pages/Mine/SongList'
 // import LSAF from './Item/Mine'
 
+
 import CommunicationWebView from '../../Pages/WebView/CommunicationWebView'
 import LookWebView from '../../Pages/WebView/LookWebView'
+
+import VideoTabRouter from '../TabRouter/TabRouter'
 export default createAppContainer(
     createStackNavigator({
         MainPage,
@@ -72,7 +75,8 @@ export default createAppContainer(
         NearlyPlay,
         SongList,
         CommunicationWebView,
-        LookWebView
+        LookWebView,
+        VideoTabRouter
     },
     {
         initialRouteName:'MainPage',

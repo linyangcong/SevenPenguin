@@ -6,7 +6,7 @@ import { Icon } from '@ant-design/react-native'
 import Mine from '../Mine/Index'
 import Discovery from '../Discovery/Index'
 import CloudCountry from '../CloudCountry/Index'
-import Video from '../Video/Index'
+import Video from '../../Router/TabRouter/TabRouter'
 import config from '../../config'
 import store from '../../Store/StoreRedux'
 import {connect} from 'react-redux'
@@ -225,7 +225,7 @@ class DrawerIndex extends React.Component {
             <CloudCountry navigation={this.props.navigation} />
           </ScrollView>
           <ScrollView style={{ display: this.state.activePanel == 'Video' ? 'flex' : 'none' }}>
-            <Video navigation={this.props.navigation} />
+            <Video   />
           </ScrollView>
           <ScrollView style={{ display: this.state.activePanel == 'Find' ? 'flex' : 'none' }}>
             {/* <Find navigation={this.props.navigation}/> */}

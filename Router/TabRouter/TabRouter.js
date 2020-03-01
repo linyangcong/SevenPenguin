@@ -1,36 +1,66 @@
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import {createAppContainer} from 'react-navigation'
 
-// import MineRouter from '../StackRouter/Item/Mine'
-import Mine from '../../Pages/Mine/Index'
-// import MainRouter from '../StackRouter/Item/StackItemRouter'
-import Discovery from '../../Pages/Discovery/Index'
-import CloudCountry from '../../Pages/CloudCountry/Index'
-import Video from '../../Pages/Video/Index'
-import Find from '../../Pages/Find/Index'
+import Tuijian from '../../Pages/Video/VideoItems/tuijian'
+import Look from '../../Pages/Video/VideoItems/Look'
+import FYZX from '../../Pages/Video/VideoItems/feiyunzhixia'
+import MusicPower from '../../Pages/Video/VideoItems/MusicPower'
+// import WXC from '../../Pages/Video/VideoItems/WangXC'
+// import XianChang from '../../Pages/Video/VideoItems/XianChang'
+// import ListenBGM from '../../Pages/Video/VideoItems/ListenBGM'
+// import BaiWP from '../../Pages/Video/VideoItems/BaiWP'
+// import ReSing from '../../Pages/Video/VideoItems/ReSing'
+// import GroundPeople from '../../Pages/Video/VideoItems/Ground'
+import {Dimensions} from 'react-native'
+// import React from 'react'
+const {width}=Dimensions.get('window')
 
-
-    const TabRouter=createMaterialTopTabNavigator({
-        // DrawerMenu,
-        Mine,
-        Discovery,
-        CloudCountry,
-        Video,
-        Find
+    const TabRouter=createAppContainer(createMaterialTopTabNavigator({
+        '推荐':Tuijian,
+        'Look直播':Look,
+        '飞云之下':FYZX,
+        '音乐的力量':MusicPower,
+        // '王小潮':WXC,
+        // '现场直播':XianChang,
+        // '听音乐':ListenBGM,
+        // '百万平':BaiWP,
+        // '翻唱':ReSing,
+        // '广场':GroundPeople
     },{
-        // initialRouteName:"Mine",
+        initialRouteName:"Look直播",
+        swipeEnabled: true,
         tabBarOptions: {
-            activeTintColor:'#333',
+            activeTintColor:'#F00',
             inactiveTintColor:'#888',
             tabStyle:{
                 backgroundColor:'white',
+                padding:5,
+            },
+            style:{
+                width:width,
+                // height:16
             },
             labelStyle:{
-                fontSize:16,
+                fontSize:14,
+                // lineHeight:20,
+                // overflow:'scroll',
             },
             
           },
           
-    })
+    }))
 
-export default createAppContainer(TabRouter);
+    // class TabRouterView extends React.Component{
+    //     constructor(props){
+    //         super(props)
+    //     }
+    //     render(){
+    //         return(
+    //             <ScrollView horizontal={true}>
+    //                 <TabRouter></TabRouter>
+    //             </ScrollView>
+    //         )
+    //     }
+    // }
+
+export default TabRouter;

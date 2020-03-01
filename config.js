@@ -15,5 +15,9 @@
 // var webviewServer='http://192.168.0.102:8080'// HeartBeat Font
 // var LookServer='http://192.168.0.109:8080' //NodeMediaServer
 
+var serverUrl='http://47.115.124.190:3000' //SevenPenguinServer
+var resourceServer='http://47.115.124.190:80'//Image,Sound and so on static Resources Server
+var webviewServer='http://47.115.124.190:80/HeartBeat' // HeartBeat Font
+var LookServer='http://47.115.124.190:80/Media/' //NodeMediaServer
 
 module.exports={serverUrl,resourceServer,webviewServer,LookServer}

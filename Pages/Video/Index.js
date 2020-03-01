@@ -1,21 +1,21 @@
 import React from 'react'
 import { View, Text, ScrollView, Image } from 'react-native'
-import {LookServer} from '../../config'
+// import {LookServer} from '../../config'
 // import Zan from '../../Components/Zan'
 // import Discussion from '../../Components/Discussion'
 // import Expansion from '../../Components/Expansion'
 
 import config from '../../config'
-import Tuijian from './VideoItems/tuijian'
-import Look from './VideoItems/Look'
-import FYZX from './VideoItems/feiyunzhixia'
-import MusicPower from './VideoItems/MusicPower'
-import WXC from './VideoItems/WangXC'
-import XianChang from './VideoItems/XianChang'
-import ListenBGM from './VideoItems/ListenBGM'
-import BaiWP from './VideoItems/BaiWP'
-import ReSing from './VideoItems/ReSing'
-import Ground from './VideoItems/Ground'
+// import Tuijian from './VideoItems/tuijian'
+// import Look from './VideoItems/Look'
+// import FYZX from './VideoItems/feiyunzhixia'
+// import MusicPower from './VideoItems/MusicPower'
+// import WXC from './VideoItems/WangXC'
+// import XianChang from './VideoItems/XianChang'
+// import ListenBGM from './VideoItems/ListenBGM'
+// import BaiWP from './VideoItems/BaiWP'
+// import ReSing from './VideoItems/ReSing'
+// import Ground from './VideoItems/Ground'
 
 // import Axios from 'axios'
 class VideoIndex extends React.Component {
@@ -44,12 +44,12 @@ class VideoIndex extends React.Component {
                 hotflags: ['热门', '颜值', '才艺', '舞蹈', '好声音', '情感', '二次元', '音乐人', '萌新', '附近'],
                 lists:
                     [
-                        [{ acting: true, imgurl: {uri: config.resourceServer + '/WebView/Video/LOOK直播/v1.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:1,playurl:LookServer },
-                        { acting: true, imgurl: {uri: config.resourceServer + '/WebView/Video/LOOK直播/v2.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:2 ,playurl:LookServer}],
-                        [{ acting: true, imgurl: {uri: config.resourceServer + '/WebView/Video/LOOK直播/v3.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:3,playurl:LookServer },
-                        { acting: true, imgurl:{uri: config.resourceServer + '/WebView/Video/LOOK直播/v4.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:4 ,playurl:LookServer}],
-                        [{ acting: true, imgurl: {uri: config.resourceServer + '/WebView/Video/LOOK直播/v5.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:5,playurl:LookServer },
-                        { acting: true, imgurl:{uri: config.resourceServer + '/WebView/Video/LOOK直播/v6.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:6 ,playurl:LookServer}],
+                        [{ acting: true, imgurl: {uri: config.resourceServer + '/WebView/Video/LOOK直播/v1.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:1,playurl:config.LookServer },
+                        { acting: true, imgurl: {uri: config.resourceServer + '/WebView/Video/LOOK直播/v2.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:2 ,playurl:config.LookServer}],
+                        [{ acting: true, imgurl: {uri: config.resourceServer + '/WebView/Video/LOOK直播/v3.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:3,playurl:config.LookServer },
+                        { acting: true, imgurl:{uri: config.resourceServer + '/WebView/Video/LOOK直播/v4.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:4 ,playurl:config.LookServer}],
+                        [{ acting: true, imgurl: {uri: config.resourceServer + '/WebView/Video/LOOK直播/v5.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:5,playurl:config.LookServer },
+                        { acting: true, imgurl:{uri: config.resourceServer + '/WebView/Video/LOOK直播/v6.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:6 ,playurl:config.LookServer}],
                     ]
             },
 
@@ -78,13 +78,18 @@ class VideoIndex extends React.Component {
                 <ScrollView horizontal >
                     {
                         this.state.tabs.map((item, index) =>
-                            <Text key={index} ref={'tab' + index} style={{ fontSize: 14, fontWeight: (this.state.activetab == ('tab' + index)) ? 'bold' : 'normal', color: (this.state.activetab == ('tab' + index)) ? 'red' : '#666', padding: 10, borderBottomWidth: (this.state.activetab == ('tab' + index)) ? 2 : 1, borderBottomColor: (this.state.activetab == ('tab' + index)) ? 'red' : '#ddd' }} onPress={() =>
+                            <Text 
+                            key={index} ref={'tab' + index} 
+                            style={{ fontSize: 14, fontWeight: (this.state.activetab == ('tab' + index)) ? 'bold' : 'normal', color: (this.state.activetab == ('tab' + index)) ? 'red' : '#666', padding: 10, borderBottomWidth: (this.state.activetab == ('tab' + index)) ? 2 : 1, borderBottomColor: (this.state.activetab == ('tab' + index)) ? 'red' : '#ddd' }} 
+                            onPress={() =>
                                 this.setState({ activetab: ('tab' + index) })
                             }>{item.name}</Text>
                         )
                     }
                 </ScrollView>
-                <ScrollView >
+
+                
+                {/* <ScrollView >
                     <Tuijian isshow={this.state.activetab == 'tab0'} navigation={this.props.navigation} />
                     <Look look={this.state.look} isshow={this.state.activetab == 'tab1'} navigation={this.props.navigation}/>
                     <FYZX fyzx={this.state.tuijianContents} isshow={this.state.activetab == 'tab2'} navigation={this.props.navigation}/>
@@ -95,7 +100,7 @@ class VideoIndex extends React.Component {
                     <BaiWP baiwp={this.state.tuijianContents} isshow={this.state.activetab == 'tab7'} navigation={this.props.navigation} />
                     <ReSing resing={this.state.tuijianContents} isshow={this.state.activetab == 'tab8'} navigation={this.props.navigation}/>
                     <Ground ground={this.state.tuijianContents} isshow={this.state.activetab == 'tab9'} navigation={this.props.navigation}/>
-                </ScrollView>
+                </ScrollView> */}
             </View>
         );
     }

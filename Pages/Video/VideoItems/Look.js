@@ -5,7 +5,21 @@ import config from '../../../config'
 class Look extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            look:
+            {
+                hotflags: ['热门', '颜值', '才艺', '舞蹈', '好声音', '情感', '二次元', '音乐人', '萌新', '附近'],
+                lists:
+                    [
+                        [{ acting: true, imgurl: {uri: config.resourceServer + '/WebView/Video/LOOK直播/v1.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:1,playurl:config.LookServer },
+                        { acting: true, imgurl: {uri: config.resourceServer + '/WebView/Video/LOOK直播/v2.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:2 ,playurl:config.LookServer}],
+                        [{ acting: true, imgurl: {uri: config.resourceServer + '/WebView/Video/LOOK直播/v3.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:3,playurl:config.LookServer },
+                        { acting: true, imgurl:{uri: config.resourceServer + '/WebView/Video/LOOK直播/v4.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:4 ,playurl:config.LookServer}],
+                        [{ acting: true, imgurl: {uri: config.resourceServer + '/WebView/Video/LOOK直播/v5.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:5,playurl:config.LookServer },
+                        { acting: true, imgurl:{uri: config.resourceServer + '/WebView/Video/LOOK直播/v6.jpg'}, flag: '美少女', played: '35.4万', content: '【亿达学长】搞事情喽', author: '亿达学长',paiming:6 ,playurl:config.LookServer}],
+                    ]
+            },
+        }
     }
     // componentDidMount(){
     //     console.log(config.LookServer)
@@ -15,7 +29,7 @@ class Look extends React.Component {
     // }
     render() {
         return (
-            <View style={{ display: this.props.isshow ? 'flex' : 'none', marginBottom: 150, marginLeft: 10, marginRight: 10 }}>
+            <View style={{  marginBottom: 150, marginLeft: 10, marginRight: 10 }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', padding: 10 }}>
                     <View  style={{ borderColor: '#eee', borderWidth: 1, padding: 20, borderRadius: 10 }}>
                         <Text>明星榜</Text>
@@ -36,7 +50,7 @@ class Look extends React.Component {
                 <ScrollView horizontal>
                     <View style={{ flexDirection: 'row' }}>
                         {
-                            this.props.look.hotflags.map((item, index) =>
+                            this.state.look.hotflags.map((item, index) =>
                                 <Text key={index} style={{ padding: 4, marginRight: 20, backgroundColor:index==0?'pink': '#e8e8e8',color:index==0?'red':'black', borderRadius: 10, fontSize: 12 }}>  {item}  </Text>
                             )
                         }
@@ -45,7 +59,7 @@ class Look extends React.Component {
 
                 <View style={{ marginTop: 20 }}>
                     {
-                        this.props.look.lists.map((item, index) =>
+                        this.state.look.lists.map((item, index) =>
                             <View style={{ flexDirection: 'row' ,justifyContent:'space-around',marginBottom:10}} key={index}>
                                 {
                                     item.map((list,listindex)=>
