@@ -27,11 +27,6 @@ class Look extends React.Component {
                     </View>
                     <View style={{ borderColor: '#eee', borderWidth: 1, padding: 20, borderRadius: 10 }}>
                         <Text>我的关注</Text>
-                        {/* <View style={{flexDirection:'row',justifyContent:'space-around'}}>
-                        <Image source={require('../../../Asserts/Icons/User/user.png')} style={{width:30,height:30}}/>
-                        <Image source={require('../../../Asserts/Icons/User/user.png')} style={{width:30,height:30}}/>
-                        <Image source={require('../../../Asserts/Icons/User/user.png')} style={{width:30,height:30}}/>
-                    </View> */}
                         <View style={{ marginTop: 5 }}>
                             <Text style={{ fontSize: 12, color: '#aaa' }}>暂无关注主播开播</Text>
                         </View>

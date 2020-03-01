@@ -58,11 +58,11 @@ class VideoIndex extends React.Component {
 
         }
     }
-    static navigationOptions = {
+    static navigationOptions = ()=>({
         tabBarLabel: ({ focused, tintColor }) => {
             return <Text style={{ fontWeight: focused ? 'bold' : 'normal' }}>视频</Text>
         }
-    }
+    })
     
     // componentDidMount(){
     //     Axios.get(`${config.resourceServer}/Video/List/tuijianContents`).then(res=>{

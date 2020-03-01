@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, Image } from 'react-native'
 import {Icon} from '@ant-design/react-native'
+import config from '../../../config'
 class UserDetail extends React.Component {
     constructor(props) {
         super(props);
@@ -21,12 +22,11 @@ class UserDetail extends React.Component {
                 <View style={{ flexDirection: 'row', padding: 10, justifyContent: 'space-between' }}>
                     {/* <Button title='返回' onPress={() => { this.props.goback(2) }} style={{ flex: 1 }} /> */}
                     <Text style={{ color: 'white', fontSize: 30 }} onPress={()=>this.props.navigation.pop()} >←</Text>
-                    <Image source={require('./Imgs/share.png')} style={{ height: 20, width: 20, alignSelf: 'center' }} />
+                    <Image source={{uri:`${config.resourceServer}/AppIcon/Mine/share.png`}} style={{ height: 20, width: 20, alignSelf: 'center' }} />
                 </View>
                 <Text style={{ color: 'white', alignSelf: 'center', textAlign: 'center', fontSize: 16, fontWeight: 'bold' }}>用户信息中心</Text>
                 <View style={{ padding: 20 }}>
                     <Icon name='user' size='lg' color='white' style={{padding:10,borderRadius:30,backgroundColor:'#ccc',height: 60, width: 60,}}/>
-                    {/* <Image source={require('../../../Asserts/Icons/User/user.png')} style={{ height: 60, width: 60, borderRadius: 30 }} /> */}
                     <Text style={{ color: 'white', marginTop: 5 }}>{this.state.userdetail.name}</Text>
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={{ color: 'white', textAlign: 'center', marginRight: 10, fontSize: 10 }}>关注  {this.state.userdetail.foncuser}  </Text>
@@ -49,7 +49,7 @@ class UserDetail extends React.Component {
                         {/* 主页面板 */}
                         <View style={{display:this.state.tabflag==0?(this.state.dataflag?'flex':'none'):'none'}}>
                             <View style={{ flexDirection: 'row' }}>
-                                <Image source={require('./Imgs/音乐.png')} style={{ width: 50, height: 50, borderRadius: 5 }} />
+                                <Image source={{uri:`${config.resourceServer}/AppIcon/Mine/音乐.png`}} style={{ width: 50, height: 50, borderRadius: 5 }} />
                                 <View style={{ marginLeft: 10, alignSelf: 'center' }}>
                                     <Text style={{ color: '#666' }}>听歌排行</Text>
                                     <Text style={{ color: '#aaa', fontSize: 12 }}>累计听歌722首</Text>
@@ -57,7 +57,7 @@ class UserDetail extends React.Component {
                             </View>
 
                             <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                                <Image source={require('./Imgs/心.png')} style={{ width: 50, height: 50, borderRadius: 5 }} />
+                                <Image source={{uri:`${config.resourceServer}/AppIcon/Mine/心.png`}} style={{ width: 50, height: 50, borderRadius: 5 }} />
                                 <View style={{ marginLeft: 10, alignSelf: 'center' }}>
                                     <Text style={{ color: '#666' }}>我喜欢的音乐</Text>
                                     <Text style={{ color: '#aaa', fontSize: 12 }}>15首，播放11次</Text>

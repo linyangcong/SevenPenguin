@@ -13,6 +13,7 @@ const { height, width } = Dimensions.get('window')
 // import ProgressItem from './ProgressItem'
 import ControlPlayer from './ControlPlayer'
 import Video from 'react-native-video';
+import config from '../../config'
 
 class musicPlay extends React.Component {
     constructor(props) {
@@ -121,7 +122,7 @@ class musicPlay extends React.Component {
                     changstatus={this.changstatus} 
                     /> */}
             <VideoPlayer
-            source={require('./imgs/message.mp3')}
+            source={{uri:`${config.resourceServer}/WebView/message.mp4`}}
             disableBack='off'
             disableFullscreen='off'
 

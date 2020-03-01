@@ -17,10 +17,10 @@ class MineIndex extends React.Component {
             CollectiongSongPanel: false,
             CreateSongPanel: true,
             OptionsItems: [
-                { src: require('../../Asserts/Icons/Mine/本地音乐.png'), name: '本地音乐',goName:'LSAF'},
-                { src: require('../../Asserts/Icons/Mine/我的电台.png'), name: '我的电台',goName:'MyAudio'},
-                { src: require('../../Asserts/Icons/Mine/我的收藏.png'), name: '我的收藏',goName:'MyCollection'},
-                { src: require('../../Asserts/Icons/Mine/关注新歌.png'), name: '关注新歌',goName:'FocusMusic' },
+                { src: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Mine/本地音乐.png`}, name: '本地音乐',goName:'LSAF'},
+                { src: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Mine/我的电台.png`}, name: '我的电台',goName:'MyAudio'},
+                { src: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Mine/我的收藏.png`}, name: '我的收藏',goName:'MyCollection'},
+                { src: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Mine/关注新歌.png`}, name: '关注新歌',goName:'FocusMusic' },
             ],
         };
     }
@@ -35,13 +35,13 @@ class MineIndex extends React.Component {
             userdetail:store.getState().loginAction.loginDetail
         })
     }
-    static navigationOptions = {
+    static navigationOptions = ()=>({
         tabBarLabel: ({ focused, tintColor }) => {
             return <Text style={{ fontWeight: focused ? 'bold' : 'normal'}}>我的</Text>
         },
         headerMode: 'none',
         
-    }
+    })
     goback=(pageno)=>{
         this.setState({
             show:pageno
@@ -123,7 +123,6 @@ class MineIndex extends React.Component {
                 <View style={{  backgroundColor: '#131111', flexDirection: 'column',marginBottom:150 }}>
                     <View style={{ flexDirection: 'row', padding: 20, justifyContent: 'space-between' }}>
                         <TouchableOpacity style={{ flexDirection: 'row' }}  onPress={this.stackNavigation.bind(this,'UserDetail')}>
-                            {/* <Image source={require('../../Asserts/Icons/User/user.png')} style={{ width: 70, height: 70, borderRadius: 35 }} /> */}
                             <Icon name='user' size='lg' color='white' style={{padding:10,borderRadius:30,backgroundColor:'#ccc'}}/>
                             <View style={{ alignSelf:'center',alignItems:'center', marginLeft: 20 }}>
                                 <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>{this.state.userdetail.name}</Text>
@@ -157,7 +156,7 @@ class MineIndex extends React.Component {
                                 <View>
                                     <Image source={{uri:config.resourceServer+'/WebView/Mine/M1.jpg'}} style={{ width: 160, height: 100, borderRadius: 5 }} />
                                     <View style={{ zIndex: 1000, top: -70, left: 20 }}>
-                                        <Image source={require('../../Asserts/Icons/Mine/我喜欢的音乐.png')} style={{ width: 30, height: 26 }} />
+                                        <Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Mine/我喜欢的音乐.png`}} style={{ width: 30, height: 26 }} />
                                         <Text style={{ color: 'white', fontSize: 10, marginTop: 5 }} >我喜欢的音乐</Text>
                                         {/* <View style={{backgroundColor:'white',padding:2,borderRadius:6,opacity:0.4}}> */}
                                         <Text style={{ color: '#fff', fontSize: 10, backgroundColor: 'rgba(200,200,200,0.5)', padding: 2, borderRadius: 8, marginLeft: 70, width: 60 }}>▷心动模式</Text>
@@ -170,7 +169,7 @@ class MineIndex extends React.Component {
                                     <TouchableOpacity onPress={()=>ToastAndroid.show('暂未开通!',2000)}>
                                     <View style={{ marginTop: 10, marginLeft: 20 }}>
                                         <Text style={{ marginLeft: '70%', fontSize: 10, color: '#ff8888' }}>推荐</Text>
-                                        <Image source={require('../../Asserts/Icons/Mine/我喜欢的音乐.png')} style={{ width: 30, height: 26 }} />
+                                        <Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Mine/我喜欢的音乐.png`}} style={{ width: 30, height: 26 }} />
                                         <Text style={{ color: '#ff5555', fontSize: 10, marginTop: 5 }}>私藏推荐</Text>
                                         {/* <View style={{backgroundColor:'white',padding:2,borderRadius:6,opacity:0.4}}> */}
                                         <Text style={{ color: '#ff8888', fontSize: 10, left: '50%' }}>▷心动模式</Text>
@@ -185,7 +184,7 @@ class MineIndex extends React.Component {
                                 <View>
                                     <Image source={{uri:config.resourceServer+'/WebView/Mine/M2.jpg'}} style={{ width: 160, height: 100, borderRadius: 5}} />
                                     <View style={{ zIndex: 1000, top: -75, left: 20 }}>
-                                        <Image source={require('../../Asserts/Icons/Mine/私人FM.png')} style={{ width: 35, height: 30 }} />
+                                        <Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Mine/私人FM.png`}} style={{ width: 35, height: 30 }} />
                                         <Text style={{ color: 'white', fontSize: 10, marginTop: 5 }}>私人FM</Text>
                                         {/* <View style={{backgroundColor:'white',padding:2,borderRadius:6,opacity:0.4}}> */}
                                         <Text style={{ color: '#fff', fontSize: 10, backgroundColor: '#rgba(200,200,200,0.5)', padding: 2, borderRadius: 8,  marginLeft: 70, width: 60 }}>▷心动模式</Text>
@@ -197,7 +196,7 @@ class MineIndex extends React.Component {
                                 <TouchableOpacity onPress={()=>ToastAndroid.show('暂未开通!',2000)}>
                                     <View style={{ marginTop: 10, marginLeft: 20 }}>
                                         <Text style={{ marginLeft: '70%', fontSize: 10, color: '#ff8888' }}>推荐</Text>
-                                        <Image source={require('../../Asserts/Icons/Mine/私人FM.png')} style={{ width: 30, height: 26 }} />
+                                        <Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Mine/私人FM.png`}} style={{ width: 30, height: 26 }} />
                                         <Text style={{ color: '#ff5555', fontSize: 10, marginTop: 5 }}>因乐交友</Text>
                                         {/* <View style={{backgroundColor:'white',padding:2,borderRadius:6,opacity:0.4}}> */}
                                         <Text style={{ color: '#ff8888', fontSize: 10, left: '50%' }}>找到音乐交友</Text>

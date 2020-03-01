@@ -1,8 +1,6 @@
 import React from 'react'
 import {ToastAndroid,ActivityIndicator} from 'react-native'
 import { WebView } from 'react-native-webview';
-// import console = require('console');
-// import config from '../../config'
 class LookWebView extends React.Component {
     constructor(props) {
         super(props);

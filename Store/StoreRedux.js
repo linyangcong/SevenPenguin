@@ -1,9 +1,36 @@
 import {createStore,combineReducers} from 'redux'
-import config from '../config'
 var defaultMusic={
-  // playStatus:false, //true正在播放，false暂停
-  // musicDetail:{},
-  // musicObj:{}
+  playStatus:false, //true正在播放，false暂停
+  musicDetail:{
+    name:'',
+    flag:{
+      only:'',
+      SQ:''
+    },
+    music_type:'',
+    author:'',
+    image:'',
+    img_type:'',
+    description:'',
+    newflag:'',
+    hotflag:'',
+    support_count:'',
+    cplaytime:''
+  },
+  musicObj:'',
+  loginDetail:{
+    tooken:'',
+    username:'游客',
+    password:'',
+    sex:'',
+    name:'游客',
+    level:'',
+    mobile:'',
+    idcard:'',
+    signed:'',
+    foncuser:'',
+    fans:''
+  }
 }
 const musicAction=(state=defaultMusic, action)=>{
   switch (action.type) {

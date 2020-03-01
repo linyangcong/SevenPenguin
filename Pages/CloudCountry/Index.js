@@ -11,11 +11,11 @@ class CloudCountryIndex extends React.Component {
             GroundPanel:false
         }
     }
-    static navigationOptions = {
+    static navigationOptions =()=> ({
         tabBarLabel: ({ focused, tintColor }) => {
             return <Text style={{ fontWeight: focused ? 'bold' : 'normal' }}>云村</Text>
         }
-    }
+    })
     render() {
         return (
             <View style={{display:'flex',marginBottom:150}}>

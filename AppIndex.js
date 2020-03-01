@@ -9,6 +9,13 @@ class AppIndex extends React.Component {
         this.state = { 
          }
     }
+    componentWillUnmount(){
+        console.log('卸载了app页面')
+        if(store.getState().musicAction.musicObj!=''&&store.getState().musicAction.musicObj!=null){
+            store.getState().musicAction.musicObj.release();
+            store.getState().musicAction.musicObj=null;
+        }
+    }
     render() { 
         return ( 
             <Provider store={store}>

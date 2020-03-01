@@ -46,7 +46,8 @@ class tuijian extends React.Component {
         }
     }
     onBuffer(eee) {
-        // console.log(eee)
+        console.log('this is buffer')
+        console.log(eee)
     }
     videoError(e) {
         // console.log(e)

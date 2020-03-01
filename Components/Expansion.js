@@ -1,5 +1,6 @@
 import React from 'react'
 import {Image} from 'react-native'
+import config from '../config'
 class Expansion extends React.Component {
     constructor(props) {
         super(props);
@@ -7,7 +8,7 @@ class Expansion extends React.Component {
     }
     render() { 
         return ( 
-                <Image source={require('../Asserts/Icons/Discovery/点点.png')} style={{width:15,height:15}}/>
+                <Image source={{uri:`${config.resourceServer}/Asserts/Icons/Discovery/点点.png`}} style={{width:15,height:15}}/>
          );
     }
 }

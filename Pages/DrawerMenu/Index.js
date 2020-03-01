@@ -21,29 +21,28 @@ class DrawerIndex extends React.Component {
       activePanel: 'Mine',
       barstatus:true,
       userdetail:{},
-      Avatar: { Img: require('../../Asserts/Icons/User/user.png'), name: 'ServletAction', level: 5 },
       DrawerPagesMy: [
-        { tag: '', path: require('../../Asserts/Icons/DrawerPageMy/我的消息.png'), name: '我的消息' },
-        { tag: '', path: require('../../Asserts/Icons/DrawerPageMy/我的好友.png'), name: '我的好友' },
-        { tag: '', path: require('../../Asserts/Icons/DrawerPageMy/听歌识曲.png'), name: '听歌识曲' },
-        { tag: '', path: require('../../Asserts/Icons/DrawerPageMy/个性装扮.png'), name: '个性装扮' },
+        { tag: '', path: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/DrawerPageMy/我的消息.png`}, name: '我的消息' },
+        { tag: '', path: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/DrawerPageMy/我的好友.png`}, name: '我的好友' },
+        { tag: '', path: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/DrawerPageMy/听歌识曲.png`}, name: '听歌识曲' },
+        { tag: '', path: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/DrawerPageMy/个性装扮.png`}, name: '个性装扮' },
       ],
       DrawerPages: [
-        { icon: require("../../Asserts/Icons/演出.png"), name: "演出", path: "../../Pages/DrawerMenu/ShowPlay", description: '' },
-        { icon: require("../../Asserts/Icons/商城.png"), name: "商城", path: "../../Pages/DrawerMenu/Supermaket", description: '5折抢购' },
-        { icon: require("../../Asserts/Icons/附近的人.png"), name: "附近的人", path: "../../Pages/DrawerMenu/NearByPeople", description: '' },
-        { icon: require("../../Asserts/Icons/游戏推荐.png"), name: "游戏推荐", path: "../../Pages/DrawerMenu/GameProduce", description: '' },
-        { icon: require("../../Asserts/Icons/口袋彩铃.png"), name: "口袋彩铃", path: "../../Pages/DrawerMenu/PoketMusic", description: '' },
-        { icon: require("../../Asserts/Icons/创作者中心.png"), name: "创作者中心", path: "../../Pages/DrawerMenu/MyWorkSpace", description: '' },
-        { icon: require("../../Asserts/Icons/我的订单.png"), name: "我的订单", path: "../../Pages/DrawerMenu/MyOrder", description: '' },
-        { icon: require("../../Asserts/Icons/定时停止播放.png"), name: "定时停止播放", path: "../../Pages/DrawerMenu/SetTimeToStop", description: '' },
-        { icon: require("../../Asserts/Icons/扫一扫.png"), name: "扫一扫", path: "../../Pages/DrawerMenu/ScanImage", description: '' },
-        { icon: require("../../Asserts/Icons/音乐闹钟.png"), name: "音乐闹钟", path: "../../Pages/DrawerMenu/AlarmOfMusic", description: '' },
-        { icon: require("../../Asserts/Icons/音乐云盘.png"), name: "音乐云盘", path: "../../Pages/DrawerMenu/MusicCloudSpace", description: '' },
-        { icon: require("../../Asserts/Icons/在线听歌免流量.png"), name: "在线听歌免流量", path: "../../Pages/DrawerMenu/FreeListenOnline", description: '' },
-        { icon: require("../../Asserts/Icons/优惠券.png"), name: "优惠券", path: "../../Pages/DrawerMenu/Coupon", description: '' },
-        { icon: require("../../Asserts/Icons/青少年模式.png"), name: "青少年模式", path: "../../Pages/DrawerMenu/YouthModel", description: '未开启' },
-        { icon: require("../../Asserts/Icons/青少年模式.png"), name: "退出登录", path: "../../Pages/DrawerMenu/YouthModel", description: '' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/演出.png`}, name: "演出", path: "../../Pages/DrawerMenu/ShowPlay", description: '' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/商城.png`}, name: "商城", path: "../../Pages/DrawerMenu/Supermaket", description: '5折抢购' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/附近的人.png`}, name: "附近的人", path: "../../Pages/DrawerMenu/NearByPeople", description: '' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/游戏推荐.png`}, name: "游戏推荐", path: "../../Pages/DrawerMenu/GameProduce", description: '' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/口袋彩铃.png`}, name: "口袋彩铃", path: "../../Pages/DrawerMenu/PoketMusic", description: '' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/创作者中心.png`}, name: "创作者中心", path: "../../Pages/DrawerMenu/MyWorkSpace", description: '' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/我的订单.png`}, name: "我的订单", path: "../../Pages/DrawerMenu/MyOrder", description: '' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/定时停止播放.png`}, name: "定时停止播放", path: "../../Pages/DrawerMenu/SetTimeToStop", description: '' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/扫一扫.png`}, name: "扫一扫", path: "../../Pages/DrawerMenu/ScanImage", description: '' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/音乐闹钟.png`}, name: "音乐闹钟", path: "../../Pages/DrawerMenu/AlarmOfMusic", description: '' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/音乐云盘.png`}, name: "音乐云盘", path: "../../Pages/DrawerMenu/MusicCloudSpace", description: '' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/在线听歌免流量.png`}, name: "在线听歌免流量", path: "../../Pages/DrawerMenu/FreeListenOnline", description: '' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/优惠券.png`}, name: "优惠券", path: "../../Pages/DrawerMenu/Coupon", description: '' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/青少年模式.png`}, name: "青少年模式", path: "../../Pages/DrawerMenu/YouthModel", description: '未开启' },
+        { icon: {uri:`${config.resourceServer}/AppIcon/Asserts/Icons/青少年模式.png`}, name: "退出登录", path: "../../Pages/DrawerMenu/YouthModel", description: '' },
       ],
     }
   }
@@ -95,7 +94,7 @@ class DrawerIndex extends React.Component {
   }
   goMusic=()=>{
     console.log('goMusic')
-    if(store.getState().musicAction.musicDetail!=undefined&&store.getState().musicAction.musicDetail!=null)
+    if(store.getState().musicAction.musicDetail.music_path!='')
     this.props.navigation.navigate('PlayerMusic',{musicDetail:store.getState().musicAction.musicDetail})
   }
   render() {
@@ -106,7 +105,6 @@ class DrawerIndex extends React.Component {
           <View style={{ flexDirection: 'column', backgroundColor: '#eee', paddingBottom: 30, paddingLeft: 20, paddingTop: 20 }}>
             <TouchableOpacity onPress={()=>this.props.navigation.navigate('UserDetail')} >
               <Icon name='user' size='lg' color='white' style={{ padding: 10, borderRadius: 30, backgroundColor: '#ccc', maxWidth: 60 }} />
-              {/* <Image source={this.state.Avatar.Img} style={{ width: 80, height: 80, borderRadius: 40 }} /> */}
             </TouchableOpacity>
             <View style={{ flexDirection: "row", justifyContent: 'space-between', marginTop: 10 }}>
               <TouchableOpacity >
@@ -238,17 +236,15 @@ class DrawerIndex extends React.Component {
         <TouchableOpacity onPress={this.goMusic} 
         style={{ opacity: (this.state.loginstatus == 0 || this.state.loginstatus == 4 || this.state.loginstatus == 5) ? 0 : 1, width: '100%', bottom: 0, height: 60, position: 'absolute', zIndex: 9999, borderTopWidth: 0.3, borderTopColor: '#eee', flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center', backgroundColor: 'white' }}>
           <View style={{ flexDirection: 'row' }}>
-            <Image source={{ uri: store.getState().musicAction.musicDetail?`${config.resourceServer}/WebView/Imgs/${store.getState().musicAction.musicDetail.image}.jpg`:'http://localhost/WebView/Imgs/4.jpg' }} style={{ width: 40, height: 40, borderRadius: 20 }} />
+            <Image source={{ uri: store.getState().musicAction.musicDetail.image!=''?`${config.resourceServer}/WebView/Imgs/${store.getState().musicAction.musicDetail.image}.jpg`:'http://47.115.124.190/WebView/Imgs/4.jpg' }} style={{ width: 40, height: 40, borderRadius: 20 }} />
             <View style={{ marginLeft: 5 }}>
-              <Text style={{ fontSize: 14 }}>{store.getState().musicAction.musicDetail?store.getState().musicAction.musicDetail.name:'暂无播放歌曲'}</Text>
-              <Text style={{ fontSize: 10, color: '#aaa' }}>{store.getState().musicAction.musicDetail?store.getState().musicAction.musicDetail.author:'无'}</Text>
+              <Text style={{ fontSize: 14 }}>{store.getState().musicAction.musicDetail.name!=''?store.getState().musicAction.musicDetail.name:'暂无播放歌曲'}</Text>
+              <Text style={{ fontSize: 10, color: '#aaa' }}>{store.getState().musicAction.musicDetail.author!=''?store.getState().musicAction.musicDetail.author:'暂无作者'}</Text>
             </View>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
             <Icon name={this.state.playstate ? 'pause-circle' : 'right-circle'} size='md' style={{ marginRight: 10 }} />
             <Icon name='heart' size='md' style={{ marginRight: 10 }} />
-            {/* <Image source={require('../../Asserts/Icons/User/user.png')} style={{ width: 40, height: 40, borderRadius: 20 }} />
-            <Image source={require('../../Asserts/Icons/User/user.png')} style={{ width: 40, height: 40, borderRadius: 20 }} /> */}
           </View>
         </TouchableOpacity>
       </DrawerLayoutAndroid>

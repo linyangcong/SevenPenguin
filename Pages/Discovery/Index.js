@@ -5,7 +5,6 @@ import config from '../../config'
 import NewDis from './Tabs/NewDis'
 import NewSong from './Tabs/NewSong'
 import Axios from 'axios'
-// import console = require('console');
 class DiscoveryIndex extends React.Component {
     constructor(props) {
         super(props);
@@ -15,11 +14,11 @@ class DiscoveryIndex extends React.Component {
             CarouselList:[]
         }
     }
-    static navigationOptions = {
+    static navigationOptions =()=> ({
         tabBarLabel: ({ focused, tintColor }) => {
             return <Text style={{ fontWeight: focused ? 'bold' : 'normal' }}>发现</Text>
         }
-    }
+    })
     componentDidMount(){
         Axios.get(config.serverUrl+'/Album/music').then(res=>{
             // console.log(res)
@@ -53,7 +52,7 @@ class DiscoveryIndex extends React.Component {
         return (
             <View style={{  marginBottom: 80 }}>
                 <TouchableOpacity  onPress={e=>this.props.navigation.navigate('CommunicationWebView')}  style={{position:'absolute',right:10,bottom:150,zIndex:999}}>
-                <Image source={require('../../Asserts/kefu/kefu.png')} style={{width:50,height:60}} />
+                <Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/kefu/kefu.png`}} style={{width:50,height:60}} />
                 </TouchableOpacity>
                 <ScrollView style={{ paddingLeft: 10, paddingRight: 10, marginBottom: 100 }}>
                     <Carousel
@@ -192,11 +191,11 @@ class DiscoveryIndex extends React.Component {
                                 </View>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 5 }}>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                                        <View style={{ flexDirection: 'row', marginRight: 20, alignItems: 'center' }}><Image source={require('../../Asserts/Icons/Discovery/赞.png')} style={{ width: 16, height: 15 }} /><Text style={{ color: "#888", fontSize: 12 }}> 2218</Text></View>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}><Image source={require('../../Asserts/Icons/Discovery/评论.png')} style={{ width: 20, height: 20 }} /><Text style={{ color: "#888", fontSize: 12 }}> 163</Text></View>
+                                        <View style={{ flexDirection: 'row', marginRight: 20, alignItems: 'center' }}><Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Discovery/赞.png`}} style={{ width: 16, height: 15 }} /><Text style={{ color: "#888", fontSize: 12 }}> 2218</Text></View>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}><Image source={{uri:`${config.resourceServer}/AppIcon/Music/评论.png`}} style={{ width: 20, height: 20 }} /><Text style={{ color: "#888", fontSize: 12 }}> 163</Text></View>
                                     </View>
                                     <View>
-                                        <Image source={require('../../Asserts/Icons/Discovery/点点.png')} style={{ width: 15, height: 15 }} />
+                                        <Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Discovery/点点.png`}} style={{ width: 15, height: 15 }} />
                                     </View>
                                 </View>
                             </View>
@@ -214,11 +213,11 @@ class DiscoveryIndex extends React.Component {
                                 </View>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 5 }}>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                                        <View style={{ flexDirection: 'row', marginRight: 20, alignItems: 'center' }}><Image source={require('../../Asserts/Icons/Discovery/赞.png')} style={{ width: 16, height: 15 }} /><Text style={{ color: "#888", fontSize: 12 }}> 2218</Text></View>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}><Image source={require('../../Asserts/Icons/Discovery/评论.png')} style={{ width: 20, height: 20 }} /><Text style={{ color: "#888", fontSize: 12 }}> 163</Text></View>
+                                        <View style={{ flexDirection: 'row', marginRight: 20, alignItems: 'center' }}><Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Discovery/赞.png`}} style={{ width: 16, height: 15 }} /><Text style={{ color: "#888", fontSize: 12 }}> 2218</Text></View>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}><Image source={{uri:`${config.resourceServer}/AppIcon/Music/评论.png`}} style={{ width: 20, height: 20 }} /><Text style={{ color: "#888", fontSize: 12 }}> 163</Text></View>
                                     </View>
                                     <View>
-                                        <Image source={require('../../Asserts/Icons/Discovery/点点.png')} style={{ width: 15, height: 15 }} />
+                                        <Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Discovery/点点.png`}} style={{ width: 15, height: 15 }} />
                                     </View>
                                 </View>
                             </View>

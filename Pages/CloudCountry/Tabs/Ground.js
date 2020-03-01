@@ -45,7 +45,7 @@ class Ground extends React.Component {
                                         </View>
                                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                             <Text style={{ padding: 5, fontSize: 10, color: '#888' }}>{item.supportor ? item.supportor + '赞' : '0赞'}</Text>
-                                            <Image source={require('../../../Asserts/Icons/Discovery/点点.png')} style={{ width: 15, height: 15 }} />
+                                            <Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Discovery/点点.png`}} style={{ width: 15, height: 15 }} />
                                         </View>
                                     </View>
                                 </View>
@@ -67,7 +67,7 @@ class Ground extends React.Component {
                                             </View>
                                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                                 <Text style={{ padding: 5, fontSize: 10, color: '#888' }}>{item.supportor ? item.supportor + '赞' : '0赞'}</Text>
-                                                <Image source={require('../../../Asserts/Icons/Discovery/点点.png')} style={{ width: 15, height: 15 }} />
+                                                <Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Discovery/点点.png`}} style={{ width: 15, height: 15 }} />
                                             </View>
                                         </View>
                                     </View>

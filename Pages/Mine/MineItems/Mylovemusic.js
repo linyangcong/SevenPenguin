@@ -104,25 +104,25 @@ class MyLoveMusice extends React.Component {
                                 </View>
                                 <View style={{ flexDirection: 'row', display: this.state.topposition ? 'flex' : 'none', marginRight: 10 }}>
                                     <Text style={{ fontSize: 20, alignSelf: 'center', marginRight: 10 }}>🔍</Text>
-                                    <Image source={require('../../../Asserts/Icons/Discovery/点点.png')} style={{ height: 20, width: 20, alignSelf: 'center' }} />
+                                    <Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Discovery/点点.png`}} style={{ height: 20, width: 20, alignSelf: 'center' }} />
                                 </View>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginLeft: 30, marginBottom: 50 }}>
                             <View>
-                                <Image source={require('./Imgs/心.png')} style={{ height: 100, width: 100 }} />
+                                <Image source={{uri:`${config.resourceServer}/AppIcon/Mine/心.png`}} style={{ height: 100, width: 100 }} />
                             </View>
                             <View style={{ marginLeft: 20 }}>
                                 <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>我喜欢的音乐</Text>
                                 <TouchableOpacity style={{ flexDirection: 'row', marginTop: 10 ,display:this.props.navigation.getParam('userimg')?'flex':'none'}}  >
-                                    <Image source={require('../../../Asserts/Icons/User/user.png')} style={{ width: 20, height: 20, borderRadius: 10 }} />
+                                    <Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/Icons/User/user.png`}} style={{ width: 20, height: 20, borderRadius: 10 }} />
                                     {/* <Text onPress={() => { this.props.goback(3) }} style={{ color: 'white', fontSize: 14, color: '#888', alignSelf: 'center' }}>  {this.props.userdetail.name} ></Text> */}
                                 </TouchableOpacity>
                             </View>
                         </View>
                         <View style={{ borderTopLeftRadius: 20, borderTopRightRadius: 20, padding: 10, backgroundColor: '#fff' }}>
                             <View style={{ flexDirection: 'row', padding: 5 }}>
-                                <Image source={require('./Imgs/音乐.png')} style={{ width: 20, height: 20, borderRadius: 10 }} />
+                                <Image source={{uri:`${config.resourceServer}/AppIcon/Mine/音乐.png`}} style={{ width: 20, height: 20, borderRadius: 10 }} />
                                 <Text style={{ fontSize: 14, color: '#000', marginLeft: 10 }}>播放全部</Text>
                                 <Text style={{ fontSize: 12, color: '#aaa' }}>(共15首)</Text>
                             </View>
@@ -172,10 +172,8 @@ class MyLoveMusice extends React.Component {
                                                     </View>
                                                 </View>
                                                 <View style={{ flexDirection: 'row', flex: 1, alignSelf: 'center' }}>
-                                                    {/* <Image source={require('./Imgs/音乐.png')} style={{ height: 20, width: 20, borderRadius: 5 }} /> */}
-                                                    {/* <Icon type='pausecircleo'/> */}
                                                     <Icon name='caret-right' key={index} size='xxs' style={{borderWidth:1,borderColor:'#ccc',borderRadius:6,paddingLeft:3,paddingTop:3,paddingBottom:3}}/>
-                                                    <Image source={require('../../../Asserts/Icons/Discovery/点点.png')} style={{ width: 20, height: 20 }} />
+                                                    <Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/Icons/Discovery/点点.png`}} style={{ width: 20, height: 20 }} />
                                                 </View>
                                             </TouchableOpacity>
                                         )

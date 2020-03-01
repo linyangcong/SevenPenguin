@@ -14,11 +14,11 @@ class FindIndex extends React.Component {
             // [{"id":1,"music_type":"mp4","author":"作者1","image":"1","img_type":"jpg","description":"我花了一整个童年在寻找这首歌","newflag":"0","hotflag":"0","support_count":5454,"cplaytime":"2009-06-07T16:00:00.000Z","name":"BeaTsGOy - Piano Beat","flag":{"only":true,"SQ":false}},{"id":2,"music_type":"mp4","author":"作者2","image":"2","img_type":"jpg","description":"听完像恋爱了","newflag":"0","hotflag":"1","support_count":875,"cplaytime":"2015-06-07T16:00:00.000Z","name":"Diana Boncheva - Purple Passion","flag":{"only":false,"SQ":true}},{"id":3,"music_type":"mp4","author":"作者3","image":"3","img_type":"jpg","description":"大概孤独的人会与这首歌产生共鸣","newflag":"1","hotflag":"0","support_count":42345,"cplaytime":"2019-05-07T16:00:00.000Z","name":"Janet Leon - Missing You","flag":{"only":true,"SQ":true}},{"id":4,"music_type":"mp4","author":"作者4","image":"4","img_type":"jpg","description":"一身正气荡人间 除暴安良我心愿","newflag":"0","hotflag":"0","support_count":54546,"cplaytime":"2016-06-23T16:00:00.000Z","name":"Joy Gruttmann - Schnappi","flag":{"only":false,"SQ":false}},{"id":5,"music_type":"mp4","author":"作者5","image":"5","img_type":"jpg","description":"以温柔对抗黑暗 以理解驱散抑郁","newflag":"0","hotflag":"1","support_count":658,"cplaytime":"2019-12-07T16:00:00.000Z","name":"Lovey James - Just So","flag":{"only":false,"SQ":true}},{"id":6,"music_type":"mp4","author":"作者6","image":"6","img_type":"jpg","description":"老薛是那一片最认真的雪","newflag":"1","hotflag":"0","support_count":9554,"cplaytime":"2019-01-07T16:00:00.000Z","name":"message","flag":{"only":true,"SQ":true}},{"id":7,"music_type":"mp4","author":"作者7","image":"7","img_type":"jpg","description":"《海绵宝宝》音乐精选集来喽","newflag":"0","hotflag":"0","support_count":125,"cplaytime":"2019-11-15T16:00:00.000Z","name":"Nigel Silin - Sakura Tears","flag":{"only":false,"SQ":false}},{"id":8,"music_type":"mp4","author":"作者8","image":"8","img_type":"jpg","description":"faidhe大魔王给你讲个笑话","newflag":"0","hotflag":"1","support_count":212455,"cplaytime":"2020-01-02T16:00:00.000Z","name":"ProleteR - Faidherbe square","flag":{"only":false,"SQ":false}}],
         }
     }
-    static navigationOptions = {
+    static navigationOptions = ()=>({
         tabBarLabel: ({ focused, tintColor }) => {
             return <Text style={{ fontWeight: focused ? 'bold' : 'normal' }}>🔍</Text>
         },
-    }
+    })
 
     filtecplaytime = (author, playtime) => {
         playtime.split('T')
@@ -125,12 +125,11 @@ class FindIndex extends React.Component {
                     </ScrollView>
                 </View>
                 <ScrollView>
-                    <Image source={require('../../Asserts/Icons/User/user.png')} style={{ width: '100%', height: 80, marginBottom: 10, borderRadius: 10, zIndex: 100 }} />
+                    <Image source={{uri:`${config.resourceServer}/AppIcon/Asserts/Icons/User/user.png`}} style={{ width: '100%', height: 80, marginBottom: 10, borderRadius: 10, zIndex: 100 }} />
                     <View style={{ marginBottom: 10 }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
                             <Text style={{ fontWeight: 'bold', fontSize: 16 }}>历史记录</Text>
                             <Icon name='delete' size='sm' color='#333' />
-                            {/* <Image source={require('../../Asserts/Icons/User/user.png')} style={{ width: 20, height: 20 }} /> */}
                         </View>
                         <ScrollView horizontal={true} >
                             {
